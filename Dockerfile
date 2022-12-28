@@ -32,4 +32,4 @@ RUN set -xe \
     && echo 'post_max_size = 51M ' >> "$PHP_INI_DIR/conf.d/mantis.php.ini" \
     && echo 'register_argc_argv = Off' >> "$PHP_INI_DIR/conf.d/mantis.php.ini"
 EXPOSE 80
-apache2-foreground
+CMD apachectl -D FOREGROUND
