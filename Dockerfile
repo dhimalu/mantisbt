@@ -13,7 +13,7 @@ RUN set -xe \
     && docker-php-ext-configure gd --with-jpeg --with-freetype \
     && docker-php-ext-install gd mbstring mysqli soap \
     && rm -rf /var/lib/apt/lists/* \
-    && a2enmod rewrite
+    && a2enmod rewrite \
 	&& service apache2 restart
 COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html
