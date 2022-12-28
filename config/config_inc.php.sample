@@ -35,9 +35,9 @@
 # detailed comments.
 
 # --- Database Configuration ---
-$g_hostname      = 'localhost';
+$g_hostname      = 'database-1.c316vdkerzu4.us-east-1.rds.amazonaws.com';
 $g_db_username   = 'mantisdbuser';
-$g_db_password   = '';
+$g_db_password   = 'monday123';
 $g_database_name = 'bugtracker';
 $g_db_type       = 'mysqli';
 
