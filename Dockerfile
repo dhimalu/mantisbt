@@ -15,6 +15,8 @@ RUN set -xe \
     && rm -rf /var/lib/apt/lists/* \
     && a2enmod rewrite
 	&& service apache2 restart
+COPY . /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
 # Install MantisBT itself
 RUN set -xe \
@@ -29,8 +31,5 @@ RUN set -xe \
     && echo 'upload_max_filesize = 50M ' >> "$PHP_INI_DIR/conf.d/mantis.php.ini" \
     && echo 'post_max_size = 51M ' >> "$PHP_INI_DIR/conf.d/mantis.php.ini" \
     && echo 'register_argc_argv = Off' >> "$PHP_INI_DIR/conf.d/mantis.php.ini"
-
-COPY . /var/www/html
-RUN chown -R www-data:www-data /var/www/html
 EXPOSE 80
 apache2-foreground
