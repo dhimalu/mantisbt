@@ -14,6 +14,7 @@ RUN set -xe \
     && docker-php-ext-install gd mbstring mysqli soap \
     && rm -rf /var/lib/apt/lists/* \
     && a2enmod rewrite
+	&& service apache2 restart
 
 # Install MantisBT itself
 RUN set -xe \
@@ -31,4 +32,5 @@ RUN set -xe \
 
 COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html
-EXPOSE 82
+EXPOSE 80
+apache2-foreground
