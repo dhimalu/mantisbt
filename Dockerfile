@@ -3,6 +3,7 @@ ENV TZ=America/New_York
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update
 RUN apt-get upgrade -y
+RUN apt-get install curl -y
 RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:ondrej/php -y
 RUN apt-get install -y apache2
