@@ -12,5 +12,5 @@ RUN a2enmod rewrite
 COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 #ENTRYPOINT [ "mantisentrypoint.sh" ]
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+CMD apachectl -D FOREGROUND
 EXPOSE 80
