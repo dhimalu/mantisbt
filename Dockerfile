@@ -7,10 +7,11 @@ RUN apt-get install -y apache2
 RUN apt-get install -y apache2-utils
 RUN apt-get install -y php php-cli php-fpm php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
 RUN a2enmod rewrite
-COPY ./mantisentrypoint.sh /usr/local/bin/mantisentrypoint.sh
+#COPY ./mantisentrypoint.sh /usr/local/bin/mantisentrypoint.sh
 RUN chmod 777 /usr/local/bin/mantisentrypoint.sh
 COPY . /var/www/html
+RUN rm -rf /etc/apache2/sites-enabled/000-default.conf
 RUN chown -R www-data:www-data /var/www/html
-ENTRYPOINT [ "mantisentrypoint.sh" ]
+#ENTRYPOINT [ "mantisentrypoint.sh" ]
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 EXPOSE 80
