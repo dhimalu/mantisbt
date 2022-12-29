@@ -1,7 +1,8 @@
 FROM ubuntu:22.04
 ENV TZ=America/New_York
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN add-apt-repository ppa:ondrej/php -yRUN apt-get update
+RUN add-apt-repository ppa:ondrej/php -y
+RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y apache2
 RUN apt-get install -y apache2-utils
