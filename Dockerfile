@@ -12,4 +12,5 @@ RUN chmod 777 /mantisentrypoint.sh
 COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 ENTRYPOINT [ "/mantisentrypoint.sh" ]
+CMD [“apache2ctl”, “-D”, “FOREGROUND”]
 EXPOSE 80
