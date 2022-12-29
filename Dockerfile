@@ -11,6 +11,7 @@ RUN apt-get install -y php7.2 libapache2-mod-php7.2 php7.2-common php7.2-gmp php
 RUN a2enmod rewrite
 #COPY ./mantisentrypoint.sh /usr/local/bin/mantisentrypoint.sh
 #RUN chmod 777 /usr/local/bin/mantisentrypoint.sh
+RUN rm -rf /var/www/html*
 COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 RUN rm -rf /etc/apache2/sites-enabled/000-default.conf
