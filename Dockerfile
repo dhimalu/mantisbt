@@ -11,6 +11,7 @@ RUN a2enmod rewrite
 #RUN chmod 777 /usr/local/bin/mantisentrypoint.sh
 COPY . /var/www/html
 RUN rm -rf /etc/apache2/sites-enabled/000-default.conf
+RUN service apache2 reload
 RUN chown -R www-data:www-data /var/www/html
 #ENTRYPOINT [ "mantisentrypoint.sh" ]
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
