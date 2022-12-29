@@ -9,5 +9,5 @@ RUN apt-get install -y php php-cli php-fpm php-mysql php-zip php-gd php-mbstring
 RUN a2enmod rewrite
 COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html
-CMD apachectl -D FOREGROUND
+#CMD apachectl -D FOREGROUND
 EXPOSE 80
