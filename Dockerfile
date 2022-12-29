@@ -7,8 +7,9 @@ RUN apt-get install -y apache2
 RUN apt-get install -y apache2-utils
 RUN apt-get install -y php php-cli php-fpm php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
 RUN a2enmod rewrite
-RUN service apache2 reload
+COPY mantisentrypoint.sh /mantisentrypoint.sh
+RUN chmod 777 /mantisentrypoint.sh
 COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html
-CMD apachectl -D FOREGROUND
+ENTRYPOINT [ "/mantisentrypoint.sh" ]
 EXPOSE 80
