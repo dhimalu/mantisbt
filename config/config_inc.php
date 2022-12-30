@@ -35,10 +35,10 @@
 # detailed comments.
 
 # --- Database Configuration ---
-$g_hostname      = 'localhost';
-$g_db_username   = 'mantisdbuser';
-$g_db_password   = '';
-$g_database_name = 'bugtracker';
+$g_hostname      = 'database-1.c316vdkerzu4.us-east-1.rds.amazonaws.com';
+$g_db_username   = 'mantis';
+$g_db_password   = 'monday123';
+$g_database_name = 'mantis';
 $g_db_type       = 'mysqli';
 
 # --- Security ---
@@ -51,9 +51,9 @@ $g_anonymous_account		= '';
 
 # --- Email Configuration ---
 $g_phpMailer_method		= PHPMAILER_METHOD_MAIL; # or PHPMAILER_METHOD_SMTP, PHPMAILER_METHOD_SENDMAIL
-$g_smtp_host			= 'database-1.c316vdkerzu4.us-east-1.rds.amazonaws.com';			# used with PHPMAILER_METHOD_SMTP
-$g_smtp_username		= 'mantis';					# used with PHPMAILER_METHOD_SMTP
-$g_smtp_password		= 'monday123';					# used with PHPMAILER_METHOD_SMTP
+$g_smtp_host			= 'localhost';			# used with PHPMAILER_METHOD_SMTP
+$g_smtp_username		= '';					# used with PHPMAILER_METHOD_SMTP
+$g_smtp_password		= '';					# used with PHPMAILER_METHOD_SMTP
 $g_webmaster_email      = '';
 $g_from_email           = '';	# the "From: " field in emails
 $g_return_path_email    = '';	# the return address for bounced mail
