@@ -5,6 +5,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install curl -y
 RUN apt-get -y install software-properties-common
+RUN apt-get update composer -y
 RUN add-apt-repository ppa:ondrej/php -y
 RUN apt-get install -y apache2
 RUN apt-get install -y apache2-utils
