@@ -14,8 +14,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 #RUN apt-get update composer -y
 #RUN apt-get composer require backpack/base
 #RUN apt-get php artisan backpack:base:install
-RUN php composer-setup.php --install-dir=/var/www/html --filename=composer
-RUN composer dump-autoload
+#RUN php composer-setup.php --install-dir=/var/www/html --filename=composer
+#RUN composer dump-autoload
 RUN a2enmod rewrite
 #COPY ./mantisentrypoint.sh /usr/local/bin/mantisentrypoint.sh
 #RUN chmod 777 /usr/local/bin/mantisentrypoint.sh
