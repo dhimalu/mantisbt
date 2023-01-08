@@ -28,7 +28,7 @@ steps {
 script {
          if (env.BRANCH_NAME == 'master') {
                         echo 'Hello from main branch'
-						dockerImage = docker.build("artifactory/docker/jrv:latest","-t artifactory/docker/jrv:$BUILD_NUMBER .")
+						dockerImage = docker.build("jrv:latest","jrv:$BUILD_NUMBER .")
 //						dockerImage = docker.build "jrv:$BUILD_NUMBER"
                     }  else if (env.BRANCH_NAME == 'Dev') {
                         sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
@@ -49,7 +49,7 @@ stage('Pushing to ECR') {
 steps{
 script {
  if (env.BRANCH_NAME == 'master'){
-sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:dockerImage"
+sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:latest"
 //sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
 }
 else if (env.BRANCH_NAME == 'Dev') {
