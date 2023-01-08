@@ -26,7 +26,6 @@ sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --u
 }
 }
 
-}
 stage('Building image'){
 steps {
 script {
@@ -48,6 +47,6 @@ script {
 }
 }
 }
-
+}
 
 }
