@@ -47,6 +47,25 @@ script {
 }
 }
 }
+
+stage('Pushing to ECR') {
+steps{
+script {
+ if (env.BRANCH_NAME == 'master'){
+sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:latest"
+sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
+}
+else if (env.BRANCH_NAME == 'Dev') {
+sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/dev:latest"
+sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
+}
+else{
+sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/mnt:latest"
+sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
+}
+}
+}
 }
 
+}
 }
