@@ -28,8 +28,8 @@ sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --u
 
 }
 stage('Branching'){
-steps{
-script{
+steps {
+script {
          if (env.BRANCH_NAME == 'master') {
                         echo 'Hello from main branch'
 						dockerImage = docker.build "jrv:latest"
