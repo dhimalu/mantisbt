@@ -18,8 +18,8 @@ steps {
 
 }
 stage('Branching'){
-script{
 steps{
+script{
          if (env.BRANCH_NAME == 'master') {
                         echo 'Hello from main Dev Branch'
                     }  else if (env.BRANCH_NAME == 'Dev') {
