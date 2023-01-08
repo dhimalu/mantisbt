@@ -1,32 +1,17 @@
-pipeline {
-agent any
-environment {
-AWS_ACCOUNT_ID="590907222558"
-AWS_DEFAULT_REGION="us-east-1"
-REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+node {
+ 
+  stage('Checkout') {
+  checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '7a98831a-b0e9-4bcc-b384-96810b7870b3', url: 'git@github.com:dhimalu/mantisbt.git']])
 }
-
-stages {
-
-stage('Checkout') {
-steps {
- checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '7a98831a-b0e9-4bcc-b384-96810b7870b3', url: 'git@github.com:dhimalu/mantisbt.git']])
-}
-}
-
-stage('Logging into AWS ECR') {
-steps {
-script {
-sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-}
-
-}
-}
-
-stage('Building image'){
-steps {
-script {
-         if (env.BRANCH_NAME == 'master') {
+    stage('Build') {
+        
+    }
+	
+	stage('Logging into AWS ECR')  {
+        sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 590907222558.dkr.ecr.us-east-1.amazonaws.com"
+    }
+    stage('Building image') {
+	if (env.BRANCH_NAME == 'master') {
                         echo 'Hello from main branch'
 						dockerImage = docker.build("jrv:latest","jrv:$BUILD_NUMBER .")
 //						dockerImage = docker.build "jrv:$BUILD_NUMBER"
@@ -41,14 +26,10 @@ script {
 					dockerImage = docker.build "mnt:latest"
 					dockerImage = docker.build mnt + ":$BUILD_NUMBER"
 					}
-}
-}
-}
-
-stage('Pushing to ECR') {
-steps{
-script {
- if (env.BRANCH_NAME == 'master'){
+        
+    }
+	stage('Pushing to ECR')  {
+         if (env.BRANCH_NAME == 'master'){
 sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:latest"
 //sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
 }
@@ -60,9 +41,6 @@ else{
 sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/mnt:latest"
 sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
 }
-}
-}
-}
-
-}
+    }
+	
 }
