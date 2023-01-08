@@ -1,5 +1,10 @@
 pipeline {
 agent any
+environment {
+AWS_ACCOUNT_ID="590907222558"
+AWS_DEFAULT_REGION="us-east-1"
+REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+}
 
 stages {
 
