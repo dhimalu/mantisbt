@@ -31,7 +31,7 @@ steps {
 script {
          if (env.BRANCH_NAME == 'master') {
                         echo 'Hello from main branch'
-						dockerImage = docker.build "jrv:latest,$BUILD_NUMBER"
+						dockerImage = docker.build("jrv:latest,$BUILD_NUMBER" )
 //						dockerImage = docker.build "jrv:$BUILD_NUMBER"
                     }  else if (env.BRANCH_NAME == 'Dev') {
                         sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
