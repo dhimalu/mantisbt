@@ -27,10 +27,11 @@ node {
   
 	stage('Pushing to ECR')  {
          if (env.BRANCH_NAME == 'master'){
-sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/"
+docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){
 //sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
         docker.image('jrv').push('latest')
 		docker.image('jrv').push('$BUILD_NUMBER')
+		}
 }
 else if (env.BRANCH_NAME == 'Dev') {
 sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/dev:latest"
