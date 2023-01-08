@@ -17,6 +17,7 @@ steps {
 }
 
 }
+stage('Branching'){
 script{
 steps{
          if (env.BRANCH_NAME == 'master') {
@@ -28,6 +29,7 @@ steps{
 					{
 					echo 'this is Stagning Branch'
 					}
+}
 }
 }
 
