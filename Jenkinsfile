@@ -16,18 +16,33 @@ steps {
  checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '7a98831a-b0e9-4bcc-b384-96810b7870b3', url: 'git@github.com:dhimalu/mantisbt.git']])
 }
 
+stage('Logging into AWS ECR') {
+steps {
+script {
+sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+}
+
+}
+}
+
 }
 stage('Branching'){
 steps{
 script{
          if (env.BRANCH_NAME == 'master') {
-                        echo 'Hello from main Dev Branch'
+                        echo 'Hello from main branch'
+						dockerImage = docker.build "jrv:latest"
+						dockerImage = docker.build jrv + ":$BUILD_NUMBER"
                     }  else if (env.BRANCH_NAME == 'Dev') {
                         sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
+						dockerImage = docker.build "dev:latest"
+						dockerImage = docker.build dev + ":$BUILD_NUMBER"
                     }
 					else 
 					{
 					echo 'this is Stagning Branch'
+					dockerImage = docker.build "mnt:latest"
+					dockerImage = docker.build mnt + ":$BUILD_NUMBER"
 					}
 }
 }
