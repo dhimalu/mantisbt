@@ -17,7 +17,7 @@ steps {
 }
 
 }
-
+script{
 steps{
          if (env.BRANCH_NAME == 'master') {
                         echo 'Hello from main Dev Branch'
@@ -28,6 +28,7 @@ steps{
 					{
 					echo 'this is Stagning Branch'
 					}
+}
 }
 
 
