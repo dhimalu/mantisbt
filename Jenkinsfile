@@ -32,13 +32,13 @@ docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){
 		docker.image('jrv').push("$BUILD_NUMBER")
 		}
 }
-elseif (env.BRANCH_NAME == 'Dev') {
+if (env.BRANCH_NAME == 'Dev') {
 docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){ 
 docker.image('dev').push('latest')
 docker.images('dev').push("$BUILD_NUMBER")
 }
 }
-else (env.BRANCH_NAME == 'Staging') {
+if (env.BRANCH_NAME == 'Staging') {
 docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){ 
 docker.image('mnt').push('latest')
 docker.image('mnt').push("$BUILD_NUMBER")
