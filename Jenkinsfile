@@ -38,7 +38,7 @@ docker.image('dev').push('latest')
 docker.images('dev').push("$BUILD_NUMBER")
 }
 }
-else () {
+else (env.BRANCH_NAME == 'Staging') {
 docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){ 
 docker.image('mnt').push('latest')
 docker.image('mnt').push("$BUILD_NUMBER")
