@@ -35,7 +35,7 @@ docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){
  if (env.BRANCH_NAME == 'Dev') {
 docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){ 
 docker.image('dev').push('latest')
-docker.images('dev').push("$BUILD_NUMBER")
+docker.image('dev').push("$BUILD_NUMBER")
 }
 }
 if (env.BRANCH_NAME == 'Staging') {
