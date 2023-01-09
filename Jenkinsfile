@@ -8,7 +8,7 @@ node {
 						dockerImage = docker.build "jrv:latest"
 						dockerImage = docker.build "jrv:$BUILD_NUMBER"
                     }  else if (env.BRANCH_NAME == 'Dev') {
-                        echo 'Hello from Dev branch!'"
+                        echo 'Hello from Dev branch!'
 						dockerImage = docker.build "dev:latest"
 						dockerImage = docker.build "dev:$BUILD_NUMBER"
                     }
