@@ -24,7 +24,7 @@ node {
         sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 590907222558.dkr.ecr.us-east-1.amazonaws.com"
     }
   
-	stage('Pushing to ECR')  
+	stage('Pushing to ECR')  {
          if (env.BRANCH_NAME == 'master'){
 docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){
 //sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
@@ -44,6 +44,6 @@ docker.image('mnt').push('latest')
 docker.image('mnt').push("$BUILD_NUMBER")
 }
 }
-    
+}
 	
 }
