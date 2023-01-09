@@ -1,5 +1,5 @@
 node {
- 
+ agent any
   stage('Checkout') {
   checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '7a98831a-b0e9-4bcc-b384-96810b7870b3', url: 'git@github.com:dhimalu/mantisbt.git']])
 }
@@ -34,12 +34,16 @@ docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){
 		}
 }
 else if (env.BRANCH_NAME == 'Dev') {
-sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/dev:latest"
-sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
+docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){ 
+docker.image('dev').push('latest')
+docker.images('dev').push("$BUILD_NUMBER")
+}
 }
 else{
-sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/mnt:latest"
-sh "docker push 590907222558.dkr.ecr.us-east-1.amazonaws.com/jrv:$BUILD_NUMBER"
+docker.withRegistry('https://590907222558.dkr.ecr.us-east-1.amazonaws.com/'){ 
+docker.image('mnt').push('latest')
+docker.image('mnt').push("$BUILD_NUMBER")
+}
 }
     }
 	
