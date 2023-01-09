@@ -10,13 +10,13 @@ node {
                     }  else if (env.BRANCH_NAME == 'Dev') {
                         sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
 						dockerImage = docker.build "dev:latest"
-						dockerImage = docker.build dev + ":$BUILD_NUMBER"
+						dockerImage = docker.build "dev:$BUILD_NUMBER"
                     }
 					else 
 					{
 					echo 'this is Stagning Branch'
 					dockerImage = docker.build "mnt:latest"
-					dockerImage = docker.build mnt + ":$BUILD_NUMBER"
+					dockerImage = docker.build "mnt:$BUILD_NUMBER"
 					}
     }
 	
